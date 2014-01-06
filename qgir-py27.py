@@ -519,7 +519,7 @@ def jira_attach(issue_key, filename):
     logging.debug('zip command result:  %s' % (output_zip))
     # Attach compressed CSV
     # Maximum number of times to attach csv:  5.  About 1 minute before timing out.
-    MAX_CHECKS = 10
+    MAX_CHECKS = 240
     attempts = 0
     for n in range(0, MAX_CHECKS):
         try:
@@ -693,7 +693,7 @@ def jira_assign(assignee, issue_key):
     """Assign JIRA issue_key to asssignee via SOAP API."""
     global auth, client
     # Assign issue.
-    MAX_CHECKS = 10
+    MAX_CHECKS = 240
     attempts = 0
     for n in range(0, MAX_CHECKS):
         try:
@@ -990,11 +990,11 @@ def qg_command(api_version, command, command_options = {}):
         logging.debug('report_id: %s' % (report_id))
         # Wait for report to finish spooling.
         # Time in seconds to wait between checks.
-        POLLING_DELAY = 120
+        POLLING_DELAY = 300
         # Time in seconds to wait before checking.
-        STARTUP_DELAY = 60
+        STARTUP_DELAY = 180
         # Maximum number of times to check for report.  About 10 minutes.
-        MAX_CHECKS = 10
+        MAX_CHECKS = 240
         print 'Report sent to spooler.  Checking for report in %s seconds.' % (STARTUP_DELAY)
         time.sleep(STARTUP_DELAY)
         for n in range(0, MAX_CHECKS):
